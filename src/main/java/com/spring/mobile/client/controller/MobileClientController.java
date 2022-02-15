@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.mobile.client.service.MobileClientService;
 
-import msk.spring.boot.common.mobile.dto.MobileDto;
+import msk.spring.boot.common.mobile.dto.MobileClientDto;
 import reactor.core.publisher.Flux;
 
 @RestController
@@ -17,7 +17,7 @@ public class MobileClientController {
 	MobileClientService mobileClientService;
 
 	@GetMapping
-	public Flux<MobileDto> getAllMobileDetails() {
+	public Flux<MobileClientDto> getAllMobileDetails() {
 		return mobileClientService.getAllMobileInfo();
 	}
 }

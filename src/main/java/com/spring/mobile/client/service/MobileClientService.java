@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.mobile.client.integration.MobileServiceIntegration;
 
-import msk.spring.boot.common.mobile.dto.MobileDto;
+import msk.spring.boot.common.mobile.dto.MobileClientDto;
 import reactor.core.publisher.Flux;
 
 @Service
@@ -13,7 +13,7 @@ public class MobileClientService {
 	@Autowired
 	MobileServiceIntegration mobileServiceIntegration;
 
-	public Flux<MobileDto> getAllMobileInfo() {
+	public Flux<MobileClientDto> getAllMobileInfo() {
 		return mobileServiceIntegration.getAllMobiles();
 	}
 }
