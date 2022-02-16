@@ -13,7 +13,7 @@ public class MobileAccessoryIntegration {
 	private WebClient accessoryServiceClient;
 
 	public Flux<MobileAccessoryDto> getAccessoryInfo(String mobileType) {
-		return accessoryServiceClient.get().uri("find/{mobile-type}", mobileType)
+		return accessoryServiceClient.get().uri("/find/{mobile-type}", mobileType)
 				.accept(org.springframework.http.MediaType.APPLICATION_JSON).retrieve()
 				.bodyToFlux(MobileAccessoryDto.class);
 	}

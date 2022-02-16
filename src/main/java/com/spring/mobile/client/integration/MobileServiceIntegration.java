@@ -19,6 +19,13 @@ public class MobileServiceIntegration {
 	@Autowired
 	private WebClient mobileServiceClient;
 
+	public Mono<MobileDto> getMobileById(int id) {
+		return mobileServiceClient.get().uri("/{mobile-id}", id).accept(MediaType.APPLICATION_JSON).retrieve()
+				.bodyToMono(new ParameterizedTypeReference<Response<MobileDto>>() {
+				}).flatMap(res -> Mono.just(res.getData()));
+
+	}
+
 	public Flux<MobileDto> getAllMobiles() {
 		Mono<Response<List<MobileDto>>> mobileServiceResponse = mobileServiceClient.get()
 				.accept(MediaType.APPLICATION_JSON).retrieve()
@@ -26,7 +33,7 @@ public class MobileServiceIntegration {
 				}).log();
 
 		return mobileServiceResponse.flatMap(response -> {
-			//Response<List<MobileDto>> body = response.getBody();
+			// Response<List<MobileDto>> body = response.getBody();
 			List<MobileDto> data = response.getData();
 			return Mono.just(data);
 		}).flatMapMany(data -> {
