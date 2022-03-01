@@ -1,5 +1,7 @@
 package com.spring.mobile.client.config;
 
+import static org.springframework.web.reactive.function.client.ExchangeFilterFunctions.basicAuthentication;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +23,8 @@ public class WebClientConfiguration {
 
 	@Bean
 	public WebClient countryServiceClient() {
-		return WebClient.builder().baseUrl(countryServiceBaseUri).build();
+		return WebClient.builder().filter(basicAuthentication("country-service", "country-service"))
+				.baseUrl(countryServiceBaseUri).build();
 	}
 
 	@Bean
