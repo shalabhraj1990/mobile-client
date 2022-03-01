@@ -18,7 +18,8 @@ public class WebClientConfiguration {
 
 	@Bean
 	public WebClient mobileServiceClient() {
-		return WebClient.builder().baseUrl(mobileServiceBaseUri).build();
+		return WebClient.builder().filter(basicAuthentication("mobile-user", "mobile-user"))
+				.baseUrl(mobileServiceBaseUri).build();
 	}
 
 	@Bean
